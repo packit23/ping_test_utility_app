@@ -1,0 +1,74 @@
+Requirements and Troubleshooting Guide
+
+Requirements:
+PowerShell Script (fetch_and_ping.ps1)
+
+    Plink: A command-line interface to PuTTY. Ensure plink.exe is downloaded and available on your system. Download Plink
+        Path: Update $plinkPath in the PowerShell script with the location of plink.exe.
+
+    Python: Python must be installed on your system. Download Python
+        Ensure python command is available in your PATH.
+
+    Python Script (ping_script.py):
+        The Python script requires the ping3 library. Install it using:
+
+        bash
+
+        pip install ping3
+
+    Cisco Device Access:
+        Ensure you have the correct SSH credentials and network access to the Cisco device.
+
+Setup Instructions
+1. Prepare Your Environment
+
+    Download Plink and place it in a directory accessible from your PATH or specify its full path in the PowerShell script.
+    Install Python and ensure it is added to your system’s PATH.
+    Install the ping3 library using pip.
+
+2. Configure Scripts
+
+    PowerShell Script:
+        Update $plinkPath to the path of plink.exe.
+        Set $hostname, $username, and $password with your Cisco device’s details.
+        Update $pythonScriptPath to the path where ping_script.py is saved.
+
+    Python Script:
+        Ensure the ARP table output format matches the regex in ping_script.py. Modify if necessary.
+
+3. Run the PowerShell Script
+
+    Open PowerShell and navigate to the directory containing fetch_and_ping.ps1.
+    Execute the script:
+
+    powershell
+
+    .\fetch_and_ping.ps1
+
+Basic Troubleshooting
+PowerShell Script Issues
+
+    Error: "Failed to create ARP table file."
+        Check: Ensure plink.exe is correctly specified and accessible.
+        Verify: Ensure network connectivity and correct SSH credentials for the Cisco device.
+        Log: Check the output of the plink command manually to ensure it’s working correctly.
+
+    Error: PowerShell can't find the Python executable
+        Check: Ensure Python is installed and added to the system PATH.
+        Verify: You can run python --version in a PowerShell window to check if Python is recognized.
+
+Python Script Issues
+
+    Error: Missing ping3 library
+        Check: Ensure you’ve installed the ping3 library using pip.
+        Verify: You can test the installation by running pip show ping3 in a terminal.
+
+    Error: IP addresses not being parsed correctly
+        Check: Verify the format of the ARP table output matches the regular expression in ping_script.py.
+        Modify: Adjust the regex in parse_arp_table function if needed.
+
+General Troubleshooting
+
+    Check File Paths: Ensure all paths (for plink.exe, PowerShell script, Python script) are correctly specified.
+    Permissions: Ensure you have the necessary permissions to execute scripts and access network resources.
+    Logs: Review script outputs and error messages for specific issues.
